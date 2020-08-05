@@ -109,7 +109,7 @@ services:
       - ./conf/sentinel-3.conf:/usr/local/etc/redis/sentinel.conf
     environment:
       - SENTINEL_ANNOUNCE_PORT=26381
-    [
+    command: [
       '/usr/local/etc/redis/sentinel.conf',
       '--sentinel',
       '--sentinel monitor mymaster redis-master 6379 2',
