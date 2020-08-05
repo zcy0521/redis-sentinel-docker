@@ -23,13 +23,11 @@ services:
       - 6380:6379
     volumes:
       - ./data/6380:/data
-    environment:
-      - REPLICA_ANNOUNCE_PORT=6380
     command: [
       '--appendonly ${REDIS_APPENDONLY}',
       '--replicaof redis-master 6379',
       '--replica-announce-ip ${HOST_IP}',
-      '--replica-announce-port ${REPLICA_ANNOUNCE_PORT}'
+      '--replica-announce-port 6380'
     ]
 
   redis-replica-2:
@@ -42,13 +40,11 @@ services:
       - 6381:6379
     volumes:
       - ./data/6381:/data
-    environment:
-      - REPLICA_ANNOUNCE_PORT=6381
     command: [
       '--appendonly ${REDIS_APPENDONLY}',
       '--replicaof redis-master 6379',
       '--replica-announce-ip ${HOST_IP}',
-      '--replica-announce-port ${REPLICA_ANNOUNCE_PORT}'
+      '--replica-announce-port 6381'
     ]
 
   redis-sentinel-1:
@@ -63,14 +59,12 @@ services:
       - 26379:26379
     volumes:
       - ./conf/sentinel-1.conf:/usr/local/etc/redis/sentinel.conf
-    environment:
-      - SENTINEL_ANNOUNCE_PORT=26379
     command: [
       '/usr/local/etc/redis/sentinel.conf',
       '--sentinel',
       '--sentinel monitor mymaster redis-master 6379 2',
       '--sentinel announce-ip ${HOST_IP}',
-      '--sentinel announce-port ${SENTINEL_ANNOUNCE_PORT}'
+      '--sentinel announce-port 26379'
     ]
 
   redis-sentinel-2:
@@ -85,14 +79,12 @@ services:
       - 26380:26379
     volumes:
       - ./conf/sentinel-2.conf:/usr/local/etc/redis/sentinel.conf
-    environment:
-      - SENTINEL_ANNOUNCE_PORT=26380
     command: [
       '/usr/local/etc/redis/sentinel.conf',
       '--sentinel',
       '--sentinel monitor mymaster redis-master 6379 2',
       '--sentinel announce-ip ${HOST_IP}',
-      '--sentinel announce-port ${SENTINEL_ANNOUNCE_PORT}'
+      '--sentinel announce-port 26380'
     ]
 
   redis-sentinel-3:
@@ -107,12 +99,10 @@ services:
       - 26381:26379
     volumes:
       - ./conf/sentinel-3.conf:/usr/local/etc/redis/sentinel.conf
-    environment:
-      - SENTINEL_ANNOUNCE_PORT=26381
     command: [
       '/usr/local/etc/redis/sentinel.conf',
       '--sentinel',
       '--sentinel monitor mymaster redis-master 6379 2',
       '--sentinel announce-ip ${HOST_IP}',
-      '--sentinel announce-port ${SENTINEL_ANNOUNCE_PORT}'
+      '--sentinel announce-port 26381'
     ]
