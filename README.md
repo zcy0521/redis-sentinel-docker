@@ -5,7 +5,7 @@
 - 启动
 
 ```shell script
-git clone https://github.com/zcy0521/redis-docker.git
+git clone https://github.com/zcy0521/redis-sentinel-docker.git
 cd nginx-docker
 sudo docker-compose up -d
 sudo docker-compose ps
@@ -14,8 +14,8 @@ sudo docker-compose ps
 - 删除
 
 ```shell script
-sudo docker-compose -f sentinel.yml stop
-sudo docker-compose -f sentinel.yml rm
+sudo docker-compose stop
+sudo docker-compose rm
 ```
 
 - 连接
@@ -70,6 +70,5 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 [Docker Hub](https://hub.docker.com/_/redis)
 
 ```shell script
-docker run -d --name redis -p 6379:6379 --restart=always redis
-docker exec -it redis bash
+docker run -d --name redis -p 6379:6379 redis
 ```
