@@ -7,6 +7,7 @@
 ```shell script
 git clone https://github.com/zcy0521/redis-sentinel-docker.git
 cd redis-sentinel-docker
+sudo docker-compose build --force-rm
 sudo docker-compose up -d
 sudo docker-compose ps
 ```
@@ -14,8 +15,7 @@ sudo docker-compose ps
 - 删除
 
 ```shell script
-sudo docker-compose stop
-sudo docker-compose rm
+sudo docker-compose down
 ```
 
 - 连接

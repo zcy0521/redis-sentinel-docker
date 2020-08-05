@@ -26,6 +26,7 @@ services:
     command: [
       '--appendonly ${REDIS_APPENDONLY}',
       '--replicaof redis-master 6379',
+      # REPLICA DOCKER/NAT
       '--replica-announce-ip ${HOST_IP}',
       '--replica-announce-port 6380'
     ]
@@ -43,6 +44,7 @@ services:
     command: [
       '--appendonly ${REDIS_APPENDONLY}',
       '--replicaof redis-master 6379',
+      # REPLICA DOCKER/NAT
       '--replica-announce-ip ${HOST_IP}',
       '--replica-announce-port 6381'
     ]
@@ -58,10 +60,12 @@ services:
     ports:
       - 26379:26379
     command: [
+      # mymaster
       '--sentinel monitor mymaster redis-master 6379 2',
       '--sentinel down-after-milliseconds mymaster 30000',
       '--sentinel parallel-syncs mymaster 1',
       '--sentinel failover-timeout mymaster 180000',
+      # SENTINEL DOCKER/NAT
       '--sentinel announce-ip ${HOST_IP}',
       '--sentinel announce-port 26379'
     ]
@@ -77,10 +81,12 @@ services:
     ports:
       - 26380:26379
     command: [
+      # mymaster
       '--sentinel monitor mymaster redis-master 6379 2',
       '--sentinel down-after-milliseconds mymaster 30000',
       '--sentinel parallel-syncs mymaster 1',
       '--sentinel failover-timeout mymaster 180000',
+      # SENTINEL DOCKER/NAT
       '--sentinel announce-ip ${HOST_IP}',
       '--sentinel announce-port 26380'
     ]
@@ -96,10 +102,12 @@ services:
     ports:
       - 26381:26379
     command: [
+      # mymaster
       '--sentinel monitor mymaster redis-master 6379 2',
       '--sentinel down-after-milliseconds mymaster 30000',
       '--sentinel parallel-syncs mymaster 1',
       '--sentinel failover-timeout mymaster 180000',
+      # SENTINEL DOCKER/NAT
       '--sentinel announce-ip ${HOST_IP}',
       '--sentinel announce-port 26381'
     ]
