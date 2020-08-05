@@ -1,6 +1,3 @@
 FROM redis
-
-WORKDIR /usr/local/etc/redis
-COPY conf/sentinel.conf .
-
-ENTRYPOINT ["redis-server", "sentinel.conf", "--sentinel"]
+COPY sentinel.conf /usr/local/etc/redis/sentinel.conf
+ENTRYPOINT [ "redis-sentinel", "/usr/local/etc/redis/sentinel.conf" ]

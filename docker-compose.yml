@@ -59,6 +59,9 @@ services:
       - 26379:26379
     command: [
       '--sentinel monitor mymaster redis-master 6379 2',
+      '--sentinel down-after-milliseconds mymaster 30000',
+      '--sentinel parallel-syncs mymaster 1',
+      '--sentinel failover-timeout mymaster 180000',
       '--sentinel announce-ip ${HOST_IP}',
       '--sentinel announce-port 26379'
     ]
@@ -75,6 +78,9 @@ services:
       - 26380:26379
     command: [
       '--sentinel monitor mymaster redis-master 6379 2',
+      '--sentinel down-after-milliseconds mymaster 30000',
+      '--sentinel parallel-syncs mymaster 1',
+      '--sentinel failover-timeout mymaster 180000',
       '--sentinel announce-ip ${HOST_IP}',
       '--sentinel announce-port 26380'
     ]
@@ -91,6 +97,9 @@ services:
       - 26381:26379
     command: [
       '--sentinel monitor mymaster redis-master 6379 2',
+      '--sentinel down-after-milliseconds mymaster 30000',
+      '--sentinel parallel-syncs mymaster 1',
+      '--sentinel failover-timeout mymaster 180000',
       '--sentinel announce-ip ${HOST_IP}',
       '--sentinel announce-port 26381'
     ]
