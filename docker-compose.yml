@@ -72,7 +72,6 @@ services:
     ]
 
   redis-sentinel-2:
-    build: .
     image: redis-sentinel
     depends_on:
       - redis-master
@@ -94,7 +93,6 @@ services:
     ]
 
   redis-sentinel-3:
-    build: .
     image: redis-sentinel
     depends_on:
       - redis-master
