@@ -21,7 +21,6 @@ sudo docker-compose down
 - 连接
 
 ```shell script
-redis-cli -h 192.168.3.2 -p 6379
 redis-cli -h 192.168.3.2 -p 26379
 ```
 
@@ -70,5 +69,10 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 [Docker Hub](https://hub.docker.com/_/redis)
 
 ```shell script
-docker run -d --name redis -p 6379:6379 redis
+docker run -d \
+       --name redis \
+       -p 26379:26379 \
+       -v ./sentinel.conf:/usr/local/etc/redis/sentinel.conf \
+       redis \
+       redis-sentinel /usr/local/etc/redis/sentinel.conf
 ```
